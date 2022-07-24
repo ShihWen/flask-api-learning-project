@@ -16,15 +16,9 @@ from resources.store import StoreList
 from db import db
 
 # Reference: 
-# https://help.heroku.com/ZKNTJQSK/why-is-sqlalchemy-1-4-x-not-connecting-to-heroku-postgres
-uri = os.getenv("DATABASE_URL")  # or other relevant config var
-if uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)
-
-
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(uri)# , 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_CUSTOM_URL')# , 'sqlite:///data.db'
 app.config['SQLAKCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'apple'
 api = Api(app)
